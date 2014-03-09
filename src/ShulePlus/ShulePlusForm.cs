@@ -10,9 +10,9 @@ using System.Windows.Forms;
 
 namespace ShulePlus
 {
-	public partial class Form1 : Form
+	public partial class ShulePlusForm : Form
 	{
-		public Form1()
+		public ShulePlusForm()
 		{
 			InitializeComponent();
 		}
