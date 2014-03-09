@@ -1,12 +1,4 @@
-﻿using System;
-using System.Collections.Generic;
-using System.ComponentModel;
-using System.Data;
-using System.Drawing;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
-using System.Windows.Forms;
+﻿using System.Windows.Forms;
 
 namespace ShulePlus
 {
@@ -15,6 +7,18 @@ namespace ShulePlus
 		public ShulePlusForm()
 		{
 			InitializeComponent();
+		}
+
+		private void ShulePlusForm_Load(object sender, System.EventArgs e)
+		{
+			WindowHook hook = new WindowHook(this.Handle);
+			hook.WindowProc += (_sender, _e) =>
+			{
+				Message message = (_e as WindowProcEventArgs).Message;
+				WindowsMessage winmessage = (WindowsMessage)message.Msg;
+
+				System.Console.WriteLine("Msg : {0}\t{1}\t{2}", winmessage, message.WParam, message.LParam);
+			};
 		}
 	}
 }
