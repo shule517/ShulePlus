@@ -57,10 +57,19 @@ namespace ShulePlus
 			};
 		}
 
+		WindowHook hook = null;
+
 		private void HookWindow(IntPtr handle)
 		{
+			if (hook != null)
+			{
+				hook.ReleaseHandle();
+			}
+
+			// 
+			hook = new WindowHook(handle);
+
 			// ウィンドウフック
-			WindowHook hook = new WindowHook(handle);
 			hook.WindowProc += (_sender, _e) =>
 			{
 				Message message = (_e as WindowProcEventArgs).Message;
